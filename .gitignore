@@ -1,4 +1,4 @@
-*.env
-__pycache__
-data/
-*.ipynb
+# *.env
+# __pycache__
+# data/
+# *.ipynb
