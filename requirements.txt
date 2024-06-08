@@ -1,0 +1,4 @@
+moralis
+python-dotenv
+requests
+pandas

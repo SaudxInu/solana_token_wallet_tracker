@@ -1,0 +1,2 @@
+DELAY = 60
+LAST_K_TXS = 25
