@@ -236,6 +236,37 @@ def get_token_transfers(
 
                         result.append(temp)
 
+            if x["type"] == "SWAP" and x["status"].lower() != "fail":
+                timestamp = x["timestamp"]
+
+                for y in x["actions"]:
+                    if y["type"] == "SWAP":
+                        temp = y["info"]["tokens_swapped"]["in"]
+
+                        result.append(
+                            {
+                                "name": temp["name"],
+                                "symbol": temp["symbol"],
+                                "amount": temp["amount"],
+                                "reciever": x["fee_payer"],
+                                "sender": "protocol",
+                                "token_address": temp["token_address"],
+                            }
+                        )
+
+                        temp = y["info"]["tokens_swapped"]["out"]
+
+                        result.append(
+                            {
+                                "name": temp["name"],
+                                "symbol": temp["symbol"],
+                                "amount": temp["amount"],
+                                "reciever": "protocol",
+                                "sender": x["fee_payer"],
+                                "token_address": temp["token_address"],
+                            }
+                        )
+
     if log:
         save_to_dir = f"data/wallets/{wallet[1]}_{wallet[0]}/"
 
